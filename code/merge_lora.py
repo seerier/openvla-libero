@@ -9,8 +9,8 @@ unnorm_key=...)` returns all-zero actions at eval time.
 
     python merge_lora.py \\
         --base openvla/openvla-7b \\
-        --lora /mnt/kostas_home/gxzhao4/vla/runs/<run_dir>/lora_adapter \\
-        --out  /mnt/kostas_home/gxzhao4/vla/runs/<run_dir>/merged
+        --lora $VLA_RUNS/<run_dir>/lora_adapter \\
+        --out  $VLA_RUNS/<run_dir>/merged
 
 The OpenVLA finetune.py also auto-merges after each checkpoint; this script
 exists for explicit re-merging from a specific intermediate checkpoint.

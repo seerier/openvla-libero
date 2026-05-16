@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --job-name=eval-official-spatial
-#SBATCH --partition=kostas-compute
+#SBATCH --partition=<your_partition>
 #SBATCH --gres=gpu:l40s:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
 #SBATCH --time=03:00:00
-#SBATCH --output=/mnt/kostas_home/gxzhao4/vla/logs/%x-%j.out
+#SBATCH --output=<your_log_dir>/%x-%j.out
 
 # Phase 1.3 — Official authors' LIBERO-Spatial checkpoint. Expected SR ~80-90%.
 # Upper bound for the 4-row results table. Reference your own LoRA against this.

@@ -4,7 +4,7 @@ Success criterion (Milestone M0): prints `loaded: ~7.5 B params` without
 errors and the model dtype is bfloat16. Run inside an interactive SLURM
 session that has at least one GPU and ~16 GB of free VRAM.
 
-    srun --partition=kostas-compute --gres=gpu:l40s:1 --cpus-per-task=4 \\
+    srun --partition=<your_partition> --gres=gpu:l40s:1 --cpus-per-task=4 \\
          --mem=32G --time=00:30:00 --pty bash
     source $VLA_ROOT/code/env.sh && conda activate vla
     python $VLA_ROOT/code/smoke_load_model.py

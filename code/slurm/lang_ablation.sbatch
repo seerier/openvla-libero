@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --job-name=lang-ablation
-#SBATCH --partition=kostas-compute
+#SBATCH --partition=<your_partition>
 #SBATCH --gres=gpu:l40s:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
 #SBATCH --time=03:00:00
-#SBATCH --output=/mnt/kostas_home/gxzhao4/vla/logs/%x-%j-%a.out
+#SBATCH --output=<your_log_dir>/%x-%j-%a.out
 
 # Phase 3.2 — Language-perturbation ablation.
 # Submit one job per mode:

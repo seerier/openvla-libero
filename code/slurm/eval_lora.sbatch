@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --job-name=eval-lora-spatial
-#SBATCH --partition=kostas-compute
+#SBATCH --partition=<your_partition>
 #SBATCH --gres=gpu:l40s:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
 #SBATCH --time=03:00:00
-#SBATCH --output=/mnt/kostas_home/gxzhao4/vla/logs/%x-%j.out
+#SBATCH --output=<your_log_dir>/%x-%j.out
 
 # Phase 3.1 — Your trained LoRA, merged. Expected SR >= 70% (target 80%+).
 # Edit MERGED_CKPT below to the actual run directory output by training.

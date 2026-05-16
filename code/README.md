@@ -7,7 +7,7 @@ Thin layer on top of the upstream **openvla/openvla** and **Lifelong-Robot-Learn
 ```
 code/
 ├── README.md                       (this file)
-├── env.sh                          source-able env vars
+├── env.sh.example                  template for source-able env vars
 ├── smoke_load_model.py             Phase 0.7 — proves 7B loads on GPU (M0)
 ├── merge_lora.py                   Phase 2.5 — fuse LoRA into base for eval
 ├── run_lang_ablation.py            Phase 3.2 — language-perturbation runner
@@ -21,6 +21,17 @@ code/
     ├── eval_lora.sbatch            Phase 3.1 — your merged LoRA
     └── lang_ablation.sbatch        Phase 3.2 — takes $1 = lang_mode
 ```
+
+## Setup
+
+The repo does not ship cluster-specific paths or account names. Before running anything:
+
+```bash
+cp code/env.sh.example code/env.sh
+$EDITOR code/env.sh   # fill in VLA_ROOT, HF_HOME, WANDB_ENTITY
+```
+
+Then edit each `code/slurm/*.sbatch` and replace the `<your_partition>` and `<your_log_dir>` placeholders for your SLURM cluster. Your local `code/env.sh` is gitignored.
 
 ## Run order (fast path)
 
@@ -83,8 +94,8 @@ python code/aggregate_results.py --rollouts_dir $VLA_ROLLOUTS --out results/summ
 ## Conventions
 
 - All scripts assume the `vla` conda env (Python 3.10, OpenVLA-pinned PyTorch/transformers/peft).
-- All paths live under `$VLA_ROOT=/mnt/kostas_home/gxzhao4/vla/` — see `env.sh`.
-- All long-running jobs go through SLURM on `kostas-compute` with one L40S; the A40 nodes are an interchangeable fallback.
+- All paths derive from `$VLA_ROOT` set in your local `env.sh` — see Setup above.
+- All long-running jobs go through SLURM with one L40S (or A40 / similar 48 GB GPU).
 - Custom scripts deliberately *do not* import from `openvla/` package paths until inside `main()` — keeps `--help` fast and avoids loading the upstream world for trivial calls.
 
 ## Acknowledgements
